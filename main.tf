@@ -12,8 +12,8 @@ locals {
 #   count = length(local.vm_nodes) > 0 ? 1 : 0
 
 #   provisioner "file" {
-#     source      = "${path.module}/../helpers/miniserve"
-#     destination = "/tmp/miniserve"
+#     source      = "${path.module}/../helpers/serve"
+#     destination = "/tmp/serve"
 
 #     connection {
 #       type        = "ssh"
@@ -73,9 +73,9 @@ runcmd:
   - [ bash, -c, 'echo "Cloud-init start: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/root/cloud-init-run.log' ]
   - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - install-rke2-cp.sh: $start_time" >> /home/root/cloud-init-run.log' ]
   - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - miniserve: $start_time" >> /home/root/cloud-init-run.log' ]
-  - [ bash, -c, 'chmod +x /tmp/miniserve /tmp/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/miniserve >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - serve: $start_time" >> /home/root/cloud-init-run.log' ]
+  - [ bash, -c, 'chmod +x /tmp/serve /tmp/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/serve >> /home/root/cloud-init-run.log 2>&1' ]
   - [ bash, -c, '/tmp/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
   - [ bash, -c, 'echo "Cloud-init end: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/root/cloud-init-run.log' ]
 EOF
