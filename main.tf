@@ -70,14 +70,14 @@ users:
       - ${jsonencode(trimspace(file("${var.path_to_ssh_public_key}")))}
 ssh_pwauth: True
 runcmd:
-  - [ bash, -c, 'echo "Cloud-init start: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/${var.admin_name}/cloud-init-run.log' ]
-  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - install-rke2-cp.sh: $start_time" >> /home/${var.admin_name}/cloud-init-run.log' ]
-  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/install-rke2-cp.sh >> /home/${var.admin_name}/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - miniserve: $start_time" >> /home/${var.admin_name}/cloud-init-run.log' ]
-  - [ bash, -c, 'chmod +x /tmp/miniserve /tmp/install-rke2-cp.sh >> /home/${var.admin_name}/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/miniserve >> /home/${var.admin_name}/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, '/tmp/install-rke2-cp.sh >> /home/${var.admin_name}/cloud-init-run.log 2>&1' ]
-  - [ bash, -c, 'echo "Cloud-init end: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/${var.admin_name}/cloud-init-run.log' ]
+  - [ bash, -c, 'echo "Cloud-init start: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/root/cloud-init-run.log' ]
+  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - install-rke2-cp.sh: $start_time" >> /home/root/cloud-init-run.log' ]
+  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - miniserve: $start_time" >> /home/root/cloud-init-run.log' ]
+  - [ bash, -c, 'chmod +x /tmp/miniserve /tmp/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/miniserve >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, '/tmp/install-rke2-cp.sh >> /home/root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'echo "Cloud-init end: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /home/root/cloud-init-run.log' ]
 EOF
 }
 
