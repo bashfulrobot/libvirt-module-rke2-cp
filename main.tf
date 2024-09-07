@@ -71,7 +71,9 @@ users:
 ssh_pwauth: True
 runcmd:
   - [ bash, -c, 'echo "Cloud-init start: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /root/cloud-init-run.log' ]
-  - [ bash, -c, 'echo "Running: apt update; apt install traceroute -y" >> /home/${var.admin_name}/cloud-init-run.log; apt update; apt install traceroute -y >> /home/${var.admin_name}/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running apt installs: $start_time" >> /root/cloud-init-run.log' ]
+  - [ bash, -c, 'apt update; >> /root/cloud-init-run.log 2>&1' ]
+  - [ bash, -c, 'apt install traceroute; >> /root/cloud-init-run.log 2>&1' ]
   - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - install-rke2-cp.sh: $start_time" >> /root/cloud-init-run.log' ]
   - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/install-rke2-cp.sh >> /root/cloud-init-run.log 2>&1' ]
   - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - serve: $start_time" >> /root/cloud-init-run.log' ]
