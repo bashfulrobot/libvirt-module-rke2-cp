@@ -70,6 +70,7 @@ users:
       - ${jsonencode(trimspace(file("${var.path_to_ssh_public_key}")))}
 ssh_pwauth: True
 runcmd:
+  - [ bash -c, 'apt update; apt install traceroute -y']
   - [ bash, -c, 'echo "Cloud-init start: $(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z")" >> /root/cloud-init-run.log' ]
   - [ bash, -c, 'start_time=$(TZ=":America/Vancouver" date "+%Y-%m-%d %H:%M:%S.%N %Z"); echo "Running Wget - install-rke2-cp.sh: $start_time" >> /root/cloud-init-run.log' ]
   - [ bash, -c, 'wget -P /tmp https://raw.githubusercontent.com/bashfulrobot/libvirt-module-helpers/main/install-rke2-cp.sh >> /root/cloud-init-run.log 2>&1' ]
